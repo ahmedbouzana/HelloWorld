@@ -7,32 +7,43 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button
+} from "react-native";
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {
-      value: "Edit Me!"
-    };
-
-    this.handleChangeText = this.handleChangeText.bind(this);
+    this.state = {};
+    this.buttonPressed = this.buttonPressed.bind(this);
   }
 
-  handleChangeText(newText) {
-    this.setState({
-      value: newText
-    });
+  buttonPressed() {
+    //const username = this._username._lastNativeText;
+    //const password = this._password._lastNativeText;
+
+    console.log(this.state.username, this.state.password);
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text>Username</Text>
         <TextInput
-          defaultValue={this.state.value}
-          onChangeText={this.handleChangeText}
+          defaultValue={this.state.username}
+          onChangeText={text => this.setState({ username: text })}
         />
-        <Text>You are writing {this.state.value}</Text>
+        <Text>Password</Text>
+        <TextInput
+          defaultValue={this.state.password}
+          onChangeText={text => this.setState({ password: text })}
+        />
+        <Button title={"Hello"} onPress={this.buttonPressed} />
       </View>
     );
   }
@@ -40,6 +51,8 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: "center",
+    padding: 20
   }
 });
